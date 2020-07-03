@@ -67,7 +67,7 @@ def train_argparser():
                             help="Evaluate the model only after training, not at every epoch")
 
     # Model / Training
-    arg_parser.add_argument('--train_batch_size', type=int, default=2, help="Training batch size")
+    arg_parser.add_argument('--train_batch_size', type=int, default=1, help="Training batch size")
     arg_parser.add_argument('--epochs', type=int, default=20, help="Number of epochs")
     arg_parser.add_argument('--neg_entity_count', type=int, default=100,
                             help="Number of negative entity samples per document (sentence)")
