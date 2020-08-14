@@ -13,6 +13,8 @@ def create_train_sample(doc, neg_entity_count: int, neg_rel_count: int, max_span
     # positive entities
     pos_entity_spans, pos_entity_types, pos_entity_masks, pos_entity_sizes = [], [], [], []
     for e in doc.entities:
+        if e._tokens == []:
+            continue
         pos_entity_spans.append(e.span)
         pos_entity_types.append(e.entity_type.index)
         pos_entity_masks.append(create_entity_mask(*e.span, context_size))

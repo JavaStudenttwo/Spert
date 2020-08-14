@@ -2,7 +2,7 @@ import json
 import re
 from pytorch_pretrained_bert import BertTokenizer, BertModel, BertForMaskedLM
 
-fr = open('valid.json', 'r', encoding='utf-8')
+fr = open('train.json', 'r', encoding='utf-8')
 
 VOCAB = './vocab.txt'
 tokenizer = BertTokenizer.from_pretrained(VOCAB)
@@ -187,7 +187,7 @@ for line in fr:
     instence = json.loads(line)
 
     for index, ins in enumerate(instence):
-        if index == 400:
+        if index == 1000:
             break
         sentdic = {}
 
@@ -254,7 +254,8 @@ for line in fr:
         # sentdic['tags'] = tags
         # sentdic['tag_ids'] = tag_ids
         # sentdic['entites'] = entities
-        sentdic['entites'] = entity_labels
+        sentdic['entities'] = entity_labels
+        sentdic['relations'] = []
 
         sentdic_list.append(sentdic)
 
@@ -268,9 +269,9 @@ for i in chinese_entity_type_vs_english_entity_type.keys():
 typedic_list['entities'] = type_dicts
 
 
-with open('type.json', 'w', encoding='utf-8') as file_obj:
-    # json.dump(sentdic_list, file_obj, ensure_ascii=False)
-    json.dump(typedic_list, file_obj, ensure_ascii=False)
+with open('train_.json', 'w', encoding='utf-8') as file_obj:
+    json.dump(sentdic_list, file_obj, ensure_ascii=False)
+    # json.dump(typedic_list, file_obj, ensure_ascii=False)
 
 print('保存成功')
 
